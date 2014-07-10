@@ -3,7 +3,9 @@ package com.hackbulgaria.java;
 public class Main {
 
     public static void main(String[] args) {
-        GamePlay game = new GamePlay();
+        Game game = new Game();
+        game.moveDown();
+        System.out.println(game);
     }
 
 }
