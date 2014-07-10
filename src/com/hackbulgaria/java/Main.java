@@ -3,8 +3,7 @@ package com.hackbulgaria.java;
 public class Main {
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
-        // dada
+        GamePlay game = new GamePlay();
     }
 
 }
