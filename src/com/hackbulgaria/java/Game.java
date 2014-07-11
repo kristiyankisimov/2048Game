@@ -5,7 +5,7 @@ public class Game {
     private int[][] gameMatrix;
 
     public Game() {
-        gameMatrix = new int[][] { { 4, 4, 8, 8 }, { 4, 4, 8, 8 }, { 8, 8, 4, 4 }, { 8, 8, 4, 4 } };
+        gameMatrix = new int[][] { { 1024, 1024, 8, 8 }, { 1024, 4, 4, 8 }, { 8, 8, 4, 4 }, { 8, 8, 4, 4 } };
     }
 
     private int[][] reverseMatrix() {
@@ -99,7 +99,17 @@ public class Game {
         StringBuilder string = new StringBuilder();
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                string.append(gameMatrix[i][j] + " ");
+                if (gameMatrix[i][j] < 10)
+                    string.append("    " + gameMatrix[i][j]);
+                else
+                    if (gameMatrix[i][j] < 100)
+                    string.append("   " + gameMatrix[i][j]);
+                    else
+                        if (gameMatrix[i][j] < 1000)
+                    string.append("  " + gameMatrix[i][j]);
+                else if (gameMatrix[i][j] < 10000)
+                    string.append(" " + gameMatrix[i][j]);
+
             }
             string.append("\n");
         }
