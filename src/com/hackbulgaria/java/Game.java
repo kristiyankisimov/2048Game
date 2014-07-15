@@ -1,11 +1,23 @@
 package com.hackbulgaria.java;
 
+import java.util.Random;
+
 
 public class Game {
     private int[][] gameMatrix;
 
     public Game() {
-        gameMatrix = new int[][] { { 1024, 1024, 8, 8 }, { 1024, 4, 4, 8 }, { 8, 8, 4, 4 }, { 8, 8, 4, 4 } };
+        gameMatrix = new int[][] { { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 }, { 0, 0, 0, 0 } };
+        generateNumber();
+        generateNumber();
+    }
+
+    public int[][] getGameMatrix() {
+        return gameMatrix;
+    }
+
+    public void setGameMatrix(int[][] gameMatrix) {
+        this.gameMatrix = gameMatrix;
     }
 
     private int[][] reverseMatrix() {
@@ -27,6 +39,7 @@ public class Game {
         }
         return temp;
     }
+
     private void moveRow(int rowIndex) {
         int lastChanged = -1;
         for (int j = 1; j < 4; j++) {
@@ -107,12 +120,39 @@ public class Game {
                     else
                         if (gameMatrix[i][j] < 1000)
                     string.append("  " + gameMatrix[i][j]);
-                else if (gameMatrix[i][j] < 10000)
+                else
                     string.append(" " + gameMatrix[i][j]);
 
             }
             string.append("\n");
         }
         return string.toString();
+    }
+
+    public void generateNumber() {
+        if (!isFull()) {
+            Random rn = new Random();
+            int num = Math.abs(rn.nextInt() % 100);
+            int i = 0, j = 0;
+
+            while (true) {
+                i = Math.abs(rn.nextInt() % 4);
+                j = Math.abs(rn.nextInt() % 4);
+                if (isCellEmpty(i, j))
+                    break;
+            }
+            if (num < 90)
+                gameMatrix[i][j] = 2;
+            else
+                gameMatrix[i][j] = 4;
+        }
+    }
+
+    public int[][] cloneMatrix() {
+        int[][] temp = new int[4][4];
+        for (int i = 0; i < 4; i++)
+            for (int j = 0; j < 4; j++)
+                temp[i][j] = gameMatrix[i][j];
+        return temp;
     }
 }
